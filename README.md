@@ -1,27 +1,76 @@
-# Next.js + Tailwind CSS Example
+# CS 673 - Care Management and Co-ordination Frontend
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+Implementation of the frontend using Next.js, Typescript, and TailwindCSS, which is a part of the project CS 673 - Care Management and Co-ordination.
 
-## Deploy your own
+## Configured ESLint, Prettier, and Husky
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+Configuring the above helps us:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+1.  Avoid Prettier warnings.
+2.  Avoid ESLint warnings.
+3.  Avoid errors compiling our code from Typescript.
+4.  Run a valid build using Next.js build command.
 
-## How to use
+- 5 different scripts for running checks pre-commit:
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+```json
+# package.json
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
+scripts: {
+	...
+	"check-types": "tsc --pretty --noEmit",
+	"check-format": "prettier --check .",
+	"check-lint": "eslint . --ext ts --ext tsx --ext js",
+	"format": "prettier --write .",
+	"test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build"
+	...
+}
 ```
 
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+- ESLint ([`.eslintrc.js`](https://github.com/jarrodwatts/code-like-google/blob/main/.eslintrc.js))
+- Prettier ([`.prettierrc.js`](https://github.com/jarrodwatts/code-like-google/blob/main/.prettierrc))
+- Typescript ([`tsconfig.json`](https://github.com/jarrodwatts/code-like-google/blob/main/tsconfig.json))
+- `eslint-config-prettier` (helps eslint and prettier get along)
+
+### For auto-formatting on save:
+
+Inside `/.vscode/settings.json` we set prettier as the default formatter, and also set `editor.codeActionsOnSave` to run:
+
+- **Lint:** `"source.fixAll.eslint"`
+- **Format:** `"source.fixAll.format"`
+
+### Checking standards (pre-commit):
+
+Using [husky](https://www.npmjs.com/package/husky), check all the style standards to make sure the git commits follow the guidelines or are par.
+
+## How to install and run
+
+1. Clone the repository to your local machine.
 
 ```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
+$ git clone https://github.com/Boro23-wq/cs-673-frontend.git
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+2. Change directory into the repository you just cloned.
+
+```bash
+$ cd cs-673-frontend
+```
+
+3. Open the repository in your favorite code editor. I'm using VSCode. The shortcut to open a directory in VSCode is:
+
+```bash
+$ code .
+```
+
+Please make sure you are inside the directory.
+
+4. Finally, run the command below based on your package manager:
+
+```bash
+# yarn
+$ yarn
+OR
+# npm
+$ npm install
+```
