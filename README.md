@@ -108,6 +108,8 @@ On this branch, edit, stage, and commit changes in the usual fashion, building u
 ```bash
 git add -A
 
+
+
 # add meaningful commit messages
 git commit -m 'added feature to upload profile image to S3'
 
@@ -115,3 +117,16 @@ git push -u origin new-feature
 ```
 
 For more github commands and workflows please visit [here](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow).
+
+#### Create a PR
+
+1. Once you have pushed the changes to the remote branch, create a PR (Pull Request), and request for review.
+2. Please do not merge any PR without notifying to me or one of the moderators.
+
+<u>Pull Requests. How it works?</u>
+
+1.  A developer creates some feature in a dedicated branch in their local repository.
+2.  The developer pushes the branch to a public Github repository.
+3.  The developer creates a pull request via Github.
+4.  The rest of the team or moderators reviews the code, discusses it, and alters it.
+5.  The moderator if satisfied with the code merges the feature into the official repository and closes the pull request.
