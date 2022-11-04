@@ -2,14 +2,24 @@
 
 Implementation of the frontend using Next.js, Typescript, and TailwindCSS, which is a part of the project CS 673 - Care Management and Co-ordination.
 
+<u>Tech stack:</u>
+
+1. [Next.js](https://nextjs.org/) - as a framework for building the application.
+2. [Typescript](https://www.typescriptlang.org/) - as a programming language for strong types.
+3. [TailwindCSS](https://tailwindcss.com/) - for styling.
+4. [Flowbite](https://flowbite.com/#components) - as a component library.
+5. [Phosphor Icons](https://phosphoricons.com/) - for icon packs.
+6. [Eva Design System](https://eva.design/) - for color palettes.
+
 ## Configured ESLint, Prettier, and Husky
 
-Configuring the above helps us:
+ESLint, Prettier, and Husky configuration helps us:
 
 1.  Avoid Prettier warnings.
 2.  Avoid ESLint warnings.
 3.  Avoid errors compiling our code from Typescript.
 4.  Run a valid build using Next.js build command.
+5.  Above all, be consistent throughout the codebase.
 
 - 5 different scripts for running checks pre-commit:
 
@@ -27,6 +37,14 @@ scripts: {
 }
 ```
 
+1. `check-types:` Check for type errors.
+2. `check-format:` Check for formatting errors.
+3. `check-lint:` Check for linting errors. (For.eg. Having unused vars in the codebase, or using types instead of interfaces.)
+4. `format:` Format entire codebase based on the rules set in `.prettierrc.json` file.
+5. `test-all:` Execute all the above commands sequentially.
+
+<u>Packages installed: </u>
+
 - ESLint ([`.eslintrc.js`](https://github.com/jarrodwatts/code-like-google/blob/main/.eslintrc.js))
 - Prettier ([`.prettierrc.js`](https://github.com/jarrodwatts/code-like-google/blob/main/.prettierrc))
 - Typescript ([`tsconfig.json`](https://github.com/jarrodwatts/code-like-google/blob/main/tsconfig.json))
@@ -41,7 +59,7 @@ Inside `/.vscode/settings.json` we set prettier as the default formatter, and al
 
 ### Checking standards (pre-commit):
 
-Using [husky](https://www.npmjs.com/package/husky), check all the style standards to make sure the git commits follow the guidelines or are par.
+[Husky](https://www.npmjs.com/package/husky), helps us check all the style standards to make sure the git commits follow the guidelines or are as par.
 
 ## How to install and run
 
@@ -65,7 +83,7 @@ $ code .
 
 Please make sure you are inside the directory.
 
-4. Finally, run the command below based on your package manager:
+4. Finally, run the command below based on your package manager to install all the required dependencies:
 
 ```bash
 # yarn
@@ -74,3 +92,26 @@ OR
 # npm
 $ npm install
 ```
+
+5. Once you have the dependencies installed, create a new branch for your team or for the feature you are working on.
+
+```bash
+# Please make sure you the branch name helps identify what you are currently working on and avoids ambiguity
+# Suppose you are working on a feature where you upload file to S3 bucket name the branch as follows
+git checkout -b uploadFile-to-s3
+```
+
+#### Update, add, commit, and push changes
+
+On this branch, edit, stage, and commit changes in the usual fashion, building up the feature with as many commits as necessary. Before making a commit always run the command `yarn run format` or `npm run format` to format the files before commiting, as the pre-commit hook will not go through if there are formatting issues in the codebase. Once done, commit and push the branch as usual:
+
+```bash
+git add -A
+
+# add meaningful commit messages
+git commit -m 'added feature to upload profile image to S3'
+
+git push -u origin new-feature
+```
+
+For more github commands and workflows please visit [here](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow).
