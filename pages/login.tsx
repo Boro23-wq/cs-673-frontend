@@ -1,7 +1,7 @@
 import { Button, Label, Select, TextInput } from 'flowbite-react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import React from 'react'
+import { Fragment } from 'react'
 
 const Login: NextPage = () => {
   return (
@@ -46,7 +46,7 @@ const Login: NextPage = () => {
               addon="@"
               // icon={HiMail}
               helperText={
-                <React.Fragment>
+                <Fragment>
                   We’ll never share your details. Read our{' '}
                   <a
                     href="/forms"
@@ -54,7 +54,7 @@ const Login: NextPage = () => {
                     Privacy Policy
                   </a>
                   .
-                </React.Fragment>
+                </Fragment>
               }
             />
           </div>

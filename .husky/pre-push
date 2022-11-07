@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+yarn build ||
+(
+    echo 'BUILD FAILED:
+            Build failed. Make the changes to push your code.';
+    false;
+)
+
+# If everything passes... Now we can push
+echo '✅ Production build generated. Pushing... ✅'
+
+
