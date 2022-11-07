@@ -18,22 +18,22 @@ const Login: NextPage = () => {
             <mark className="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">
               care
             </mark>{' '}
-            and{' '}
-            <mark className="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">
-              case
-            </mark>{' '}
-            management platform you need.
+            co-ordination and case management platform you need.
           </h1>
         </div>
-        <div className="max-w-3xl">
+        <div className="max-w-4xl">
           <p className="px-2 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
-            Here at Carely we focus on providing effective care management by
-            helping patients improve clinical values, reduce unnecessary care,
-            and reduce health care costs.
+            Here at{' '}
+            <b>
+              <i>Carely</i>
+            </b>{' '}
+            we focus on providing effective care management by helping patients
+            improve clinical values, reduce unnecessary care, and reduce health
+            care costs.
           </p>
         </div>
 
-        <form className="max-w-3xl px-2 mt-10 flex flex-col gap-4">
+        <form className="max-w-4xl px-2 mt-10 flex flex-col gap-4">
           <div>
             <div className="mb-2 block">
               <Label htmlFor="email" value="Your email" />
@@ -60,12 +60,12 @@ const Login: NextPage = () => {
           </div>
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="identity" value="Select your identity" />
+              <Label htmlFor="identity" value="Choose your role" />
             </div>
             <Select id="resource-pool" required={true}>
-              <option>Case Manager</option>
+              <option>Case manager</option>
               <option>Doctor</option>
-              <option>Patient</option>
+              <option>Medical Practitioner</option>
             </Select>
           </div>
           <Button type="submit">Log in</Button>
