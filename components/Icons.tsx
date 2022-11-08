@@ -15,18 +15,18 @@ export const BillingAndRevenueIcon = () => {
         rx="8"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></rect>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></rect>
       <circle
         cx="128"
         cy="128"
         r="32"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></circle>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></circle>
       <line
         x1="176"
         y1="64"
@@ -34,9 +34,9 @@ export const BillingAndRevenueIcon = () => {
         y2="120"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></line>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></line>
       <line
         x1="176"
         y1="192"
@@ -44,9 +44,9 @@ export const BillingAndRevenueIcon = () => {
         y2="136"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></line>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></line>
       <line
         x1="80"
         y1="64"
@@ -54,9 +54,9 @@ export const BillingAndRevenueIcon = () => {
         y2="120"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></line>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></line>
       <line
         x1="80"
         y1="192"
@@ -64,9 +64,9 @@ export const BillingAndRevenueIcon = () => {
         y2="136"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></line>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></line>
     </svg>
   )
 }
@@ -84,9 +84,9 @@ export const CaseManagementReportsIcon = () => {
         d="M40,56H216V176a8,8,0,0,1-8,8H168a8,8,0,0,1-8-8V152H96v56a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8Z"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></path>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></path>
       <line
         x1="96"
         y1="120"
@@ -94,9 +94,9 @@ export const CaseManagementReportsIcon = () => {
         y2="120"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></line>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></line>
       <line
         x1="96"
         y1="56"
@@ -104,9 +104,9 @@ export const CaseManagementReportsIcon = () => {
         y2="152"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></line>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></line>
       <line
         x1="160"
         y1="120"
@@ -114,9 +114,9 @@ export const CaseManagementReportsIcon = () => {
         y2="120"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></line>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></line>
       <line
         x1="160"
         y1="56"
@@ -124,9 +124,9 @@ export const CaseManagementReportsIcon = () => {
         y2="152"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></line>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></line>
     </svg>
   )
 }
@@ -144,46 +144,46 @@ export const PatientPortalIcon = () => {
         d="M180,40h28a8,8,0,0,1,8,8V76"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></path>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></path>
       <path
         d="M180,216h28a8,8,0,0,0,8-8V180"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></path>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></path>
       <path
         d="M76,216H48a8,8,0,0,1-8-8V180"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></path>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></path>
       <path
         d="M76,40H48a8,8,0,0,0-8,8V76"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></path>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></path>
       <circle
         cx="128"
         cy="112"
         r="32"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></circle>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></circle>
       <path
         d="M74.9,176a60.1,60.1,0,0,1,106.2,0"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></path>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></path>
     </svg>
   )
 }
@@ -201,9 +201,9 @@ export const PracticeManagementPortalIcon = () => {
         points="24 128 56 128 96 40 160 208 200 128 232 128"
         fill="none"
         stroke="#000"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></polyline>
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="16"></polyline>
     </svg>
   )
 }
