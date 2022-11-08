@@ -1,59 +1,24 @@
-import { Navbar } from 'flowbite-react'
-import { useRouter } from 'next/router'
-
-interface HeaderLinksType {
-  name: string
-  path: string
-}
-
 const Header = ({
-  authorized,
-  unauthorized
+  title,
+  description
 }: {
-  authorized: HeaderLinksType[]
-  unauthorized: HeaderLinksType[]
+  title: string
+  description: string
 }) => {
-  const router = useRouter()
-  const pathFromRouter = router.asPath.split('/')[1]
-
   return (
-    <Navbar fluid={true} rounded={true}>
-      <Navbar.Brand href="https://carely.com/">
-        {/* TODO: Add brand image */}
-        {/* <img
-          src=""
-          className="mr-3 h-6 sm:h-9"
-          alt="Carely Logo"
-        /> */}
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          <b>Carely</b>
-        </span>
-      </Navbar.Brand>
-
-      <Navbar.Collapse className="mb-4 sm:mb-0">
-        {['login', 'products', 'contact', 'pineapple'].includes(pathFromRouter)
-          ? unauthorized.map((pathObj) => (
-              <Navbar.Link
-                key={pathObj.name}
-                href={pathObj.path}
-                active={pathObj.path.split('/')[1] === pathFromRouter}>
-                {pathObj.name}
-              </Navbar.Link>
-            ))
-          : authorized.map((pathObj) => (
-              <Navbar.Link
-                key={pathObj.name}
-                href={pathObj.path}
-                active={pathObj.path.split('/')[1] === pathFromRouter}>
-                {pathObj.name}
-              </Navbar.Link>
-            ))}
-      </Navbar.Collapse>
-
-      <div className="md:hidden">
-        <Navbar.Toggle />
+    <section className="mt-2">
+      <div className="flex justify-center max-w-full">
+        <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-5xl">
+          {title}
+        </h1>
       </div>
-    </Navbar>
+      <div className="flex justify-center max-w-full mx-0 sm:mx-28">
+        <p className="text-center mb-6 font-light text-zinc-500 lg:mb-8 md:text-lg lg:text-xl">
+          {description}
+        </p>
+      </div>
+    </section>
   )
 }
+
 export default Header
