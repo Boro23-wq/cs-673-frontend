@@ -1,10 +1,11 @@
-
 # CS 673 - Care Management and Co-ordination Frontend
+
 Implementation of the frontend using Next.js, Typescript, and TailwindCSS, which is a part of the project CS 673 - Care Management and Co-ordination.
 
 _"Next.js gives you the best developer experience with all the features you need for production: hybrid static & server rendering, TypeScript support, smart bundling, route pre-fetching, and more. No config needed."_
 
 <u>Tech stack:</u>
+
 1.  [Next.js](https://nextjs.org/) - as a framework for building the application.
 2.  [Typescript](https://www.typescriptlang.org/) - as a programming language for strong types.
 3.  [TailwindCSS](https://tailwindcss.com/) - for styling.
@@ -17,19 +18,23 @@ _"Next.js gives you the best developer experience with all the features you need
 I highly recommend to use VSCode for this project. VSCode is available for all platforms (Windows, Mac, Linux).
 
 1. Clone the repository to your local machine.
+
 ```bash
 $ git clone https://github.com/Boro23-wq/cs-673-frontend.git
 ```
 
 2. Change directory into the repository you just cloned.
+
 ```bash
 $ cd cs-673-frontend
 ```
 
 3. Open the repository in your favorite code editor. I'm using VSCode. The shortcut to open a directory in VSCode is:
+
 ```bash
 $ code .
 ```
+
 Please make sure you are inside the directory.
 
 4. Finally, run the command below to install all the required dependencies:
@@ -50,7 +55,7 @@ git checkout -b uploadFile-to-s3
 
 ## Engine Locking
 
-We would like for all developers working on this project to use the same Node engine and package manager we are using. 
+We would like for all developers working on this project to use the same Node engine and package manager we are using.
 
 We are using `Node v16 Gallium` and `yarn` for this project so we set those values like so:
 
@@ -59,16 +64,19 @@ We are using `Node v16 Gallium` and `yarn` for this project so we set those valu
 ```.nvmrc
 lts/gallium
 ```
+
 `.npmrc`
+
 ```
 engine-strict=true
 ```
 
 You can check your version of Node with `node --version` and make sure you are setting the correct one. A list of Node version codenames can be found [here](https://github.com/nodejs/Release/blob/main/CODENAMES.md)
 
- Note that the use of `engine-strict` didn't specifically say anything about `yarn`, we do that in `package.json`:
+Note that the use of `engine-strict` didn't specifically say anything about `yarn`, we do that in `package.json`:
 
- `package.json`
+`package.json`
+
 ```json
 ...
 "engines": {
@@ -78,16 +86,19 @@ You can check your version of Node with `node --version` and make sure you are s
 },
 ...
 ```
-The `engines` field is where I have specified the specific versions of the tools we are using. 
+
+The `engines` field is where I have specified the specific versions of the tools we are using.
 
 ## Code Formatting and Quality Tools
+
 In order to set a standard that will be used by all contributors to the project to keep the code style consistent and basic best practices followed we will be implementing two tools:
 
 - [eslint](https://eslint.org/) - For best practices on coding standards
 - [prettier](https://prettier.io/) - For automatic formatting of code files
-- [husky](https://github.com/typicode/husky) -  For writing pre-commit, pre-push, and commit-lint hooks.
+- [husky](https://github.com/typicode/husky) - For writing pre-commit, pre-push, and commit-lint hooks.
 
 ### ESLint, Prettier, and Husky
+
 The configuration of ESLint, Prettier and Husky would help us:
 
 1. Avoid Prettier warnings.
@@ -111,6 +122,7 @@ scripts: {
 ...
 }
 ```
+
 1.  `check-types:` Check for type errors.
 2.  `check-format:` Check for formatting errors.
 3.  `check-lint:` Check for linting errors. (For.eg. Having unused vars in the codebase, or using types instead of interfaces.)
@@ -125,13 +137,14 @@ scripts: {
 
 - Typescript ([`tsconfig.json`](https://github.com/jarrodwatts/code-like-google/blob/main/tsconfig.json))
 
--  `eslint-config-prettier` (helps eslint and prettier get along)
+- `eslint-config-prettier` (helps eslint and prettier get along)
 
 ### For auto-formatting on save:
+
 Inside `/.vscode/settings.json` we set prettier as the default formatter, and also set `editor.codeActionsOnSave` to run:
 
--  **Lint:**  `"source.fixAll.eslint"`
--  **Format:**  `"source.fixAll.format"`
+- **Lint:** `"source.fixAll.eslint"`
+- **Format:** `"source.fixAll.format"`
 
 ### Checking standards (pre-commit):
 
@@ -150,6 +163,7 @@ yarn add -D @commitlint/config-conventional @commitlint/cli
 To configure it we will be using a set of standard defaults, but I like to include that list explicitly in a `commitlint.config.js` file since I sometimes forget what prefixes are available:
 
 `commitlint.config.js`
+
 ```js
 // build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
 // ci: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
@@ -162,38 +176,45 @@ To configure it we will be using a set of standard defaults, but I like to inclu
 // test: Adding missing tests or correcting existing tests
 
 module.exports = {
-extends: ['@commitlint/config-conventional'],
-rules: {
-'body-leading-blank': [1, 'always'],
-'body-max-line-length': [2, 'always', 100],
-'footer-leading-blank': [1, 'always'],
-'footer-max-line-length': [2, 'always', 100],
-'header-max-length': [2, 'always', 100],
-'scope-case': [2, 'always', 'lower-case'],
-'subject-case': [2,'never', ['sentence-case', 'start-case', 'pascal-case', 'upper-case'],],
-'subject-empty': [2, 'never'],
-'subject-full-stop': [2, 'never', '.'],
-'type-case': [2, 'always', 'lower-case'],
-'type-empty': [2, 'never'],
-'type-enum': [2, 'always', [
-			'build',
-			'chore',
-			'ci',
-			'docs',
-			'feat',
-			'fix',
-			'perf',
-			'refactor',
-			'revert',
-			'style',
-			'test',
-			'translation',
-			'security',
-			'changeset',
-			],
-		],
-	},
-};
+  extends: ['@commitlint/config-conventional'],
+  rules: {
+    'body-leading-blank': [1, 'always'],
+    'body-max-line-length': [2, 'always', 100],
+    'footer-leading-blank': [1, 'always'],
+    'footer-max-line-length': [2, 'always', 100],
+    'header-max-length': [2, 'always', 100],
+    'scope-case': [2, 'always', 'lower-case'],
+    'subject-case': [
+      2,
+      'never',
+      ['sentence-case', 'start-case', 'pascal-case', 'upper-case']
+    ],
+    'subject-empty': [2, 'never'],
+    'subject-full-stop': [2, 'never', '.'],
+    'type-case': [2, 'always', 'lower-case'],
+    'type-empty': [2, 'never'],
+    'type-enum': [
+      2,
+      'always',
+      [
+        'build',
+        'chore',
+        'ci',
+        'docs',
+        'feat',
+        'fix',
+        'perf',
+        'refactor',
+        'revert',
+        'style',
+        'test',
+        'translation',
+        'security',
+        'changeset'
+      ]
+    ]
+  }
+}
 ```
 
 ## VS Code Configuration
@@ -205,18 +226,20 @@ We have created a directory in the root of our project called `.vscode` and insi
 The reason we want to place them in a folder for the project is that we can set specific settings that only apply to this project, and we can share them with the rest of our team by including them in the code repository.
 
 `.vscode/settings.json`
+
 ```json
 {
-	"editor.formatOnPaste":  true,
-	"editor.formatOnSave":  true,
-	"editor.defaultFormatter":  "esbenp.prettier-vscode",
-	"editor.codeActionsOnSave":  {
-	"source.fixAll.eslint":  true,
-	"source.fixAll.format":  true,
-	"source.organizeImports":  true
-	}
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.format": true,
+    "source.organizeImports": true
+  }
 }
 ```
+
 The above will tell VS Code to use the Prettier extension as the default formatter and to automatically format your files and organize your import statements every time you save.
 
 ## Debugging
@@ -227,32 +250,33 @@ I have set up a convenient environment for debugging our application in case we 
 
 ```json
 {
-	"version": "0.1.0",
-	"configurations": [
-	{
-		"name": "Next.js: debug server-side",
-		"type": "node-terminal",
-		"request": "launch",
-		"command": "npm run dev"
-	},
-	{
-		"name": "Next.js: debug client-side",
-		"type": "pwa-chrome",
-		"request": "launch",
-		"url": "http://localhost:3000"
-	},
-	{
-		"name": "Next.js: debug full stack",
-		"type": "node-terminal",
-		"request": "launch",
-		"command": "npm run dev",
-		"console": "integratedTerminal",
-		"serverReadyAction": {
-		"pattern": "started server on .+, url: (https?://.+)",
-		"uriFormat": "%s",
-		"action": "debugWithChrome"
-		}
-	}]
+  "version": "0.1.0",
+  "configurations": [
+    {
+      "name": "Next.js: debug server-side",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev"
+    },
+    {
+      "name": "Next.js: debug client-side",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "http://localhost:3000"
+    },
+    {
+      "name": "Next.js: debug full stack",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev",
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "pattern": "started server on .+, url: (https?://.+)",
+        "uriFormat": "%s",
+        "action": "debugWithChrome"
+      }
+    }
+  ]
 }
 ```
 
@@ -266,7 +290,7 @@ This will allow to log server data in the browser while working in dev mode, mak
 
 This section is about setting up the folder structure in our project. This is one of those topics that many people will have _extremely strong opinions about_, and for good reason! Directory structure can really make or break a project in the long term when it gets out of control, especially when fellow team members have to spend unnecessary time trying to guess where to put things (or find things).
 
- I personally like to take a fairly simplistic approach, keep things separated basically in a class model/view style. We will be using three primary folders:
+I personally like to take a fairly simplistic approach, keep things separated basically in a class model/view style. We will be using three primary folders:
 
 ```
 /components
