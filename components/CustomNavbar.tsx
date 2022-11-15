@@ -1,4 +1,6 @@
 import { Navbar } from 'flowbite-react'
+import fetchJson from 'lib/fetchJson'
+import useUser from 'lib/useUser'
 import { useRouter } from 'next/router'
 
 interface HeaderLinksType {
@@ -13,54 +15,58 @@ const CustomNavbar = ({
   authorized: HeaderLinksType[]
   unauthorized: HeaderLinksType[]
 }) => {
+  const { user, mutateUser } = useUser()
   const router = useRouter()
   const pathFromRouter = router.asPath.split('/')[1]
 
+  const handleLogout = async (e: any) => {
+    e.preventDefault()
+    mutateUser(await fetchJson('/api/logout', { method: 'POST' }), false)
+    router.push('/login')
+  }
+
   return (
     <Navbar
-      className="w-full space-between mb-10 border-b-2 border-gray-50"
+      className="w-full space-between mb-10 border-b-2 border-gray-100"
       fluid={true}
       rounded={true}>
-      <div className="flex">
-        <Navbar.Brand href="/">
-          {/* TODO: Add brand image */}
-          {/* <img
-          src=""
-          className="mr-3 h-6 sm:h-9"
-          alt="Carely Logo"
-        /> */}
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            <b>Carely</b>
-          </span>
-        </Navbar.Brand>
-      </div>
+      <Navbar.Brand href="/">
+        <span className="self-center whitespace-nowrap text-xl font-semibold">
+          <b>Carely</b>
+        </span>
+      </Navbar.Brand>
 
-      <div className="flex">
-        <Navbar.Collapse className="mb-4 sm:mb-0">
-          {['login', 'products', 'contact', 'pineapple', 'legal'].includes(
-            pathFromRouter
-          )
-            ? unauthorized.map((pathObj) => (
+      <Navbar.Collapse className="mb-4 sm:mb-0">
+        {!user?.isLoggedIn
+          ? unauthorized.map((pathObj) => (
+              <Navbar.Link
+                key={pathObj.name}
+                href={pathObj.path}
+                active={pathObj.path.split('/')[1] === pathFromRouter}>
+                {pathObj.name}
+              </Navbar.Link>
+            ))
+          : authorized.map((pathObj) =>
+              pathObj.path.split('/')[1] === 'logout' ? (
+                <Navbar.Link
+                  key={pathObj.name}
+                  href={'/api/logout'}
+                  onClick={handleLogout}>
+                  {pathObj.name}
+                </Navbar.Link>
+              ) : (
                 <Navbar.Link
                   key={pathObj.name}
                   href={pathObj.path}
                   active={pathObj.path.split('/')[1] === pathFromRouter}>
                   {pathObj.name}
                 </Navbar.Link>
-              ))
-            : authorized.map((pathObj) => (
-                <Navbar.Link
-                  key={pathObj.name}
-                  href={pathObj.path}
-                  active={pathObj.path.split('/')[1] === pathFromRouter}>
-                  {pathObj.name}
-                </Navbar.Link>
-              ))}
-        </Navbar.Collapse>
+              )
+            )}
+      </Navbar.Collapse>
 
-        <div className="md:hidden">
-          <Navbar.Toggle />
-        </div>
+      <div className="md:hidden">
+        <Navbar.Toggle className="mt-1.5 bg-gray-100" />
       </div>
     </Navbar>
   )

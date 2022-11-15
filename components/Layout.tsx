@@ -14,7 +14,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       <div className="flex flex-col h-screen justify-between">
         <div className="flex flex-col">
           <section className="bg-white dark:bg-black ">
-            <div className="grid max-w-screen-xl px-4 sm:px-4 lg:px-4 py-8 mx-auto lg:gap-0 xl:gap-0 lg:py-8 lg:grid-cols-1">
+            <div className="grid max-w-screen-xl px-4 sm:px-4 lg:px-4 mx-auto lg:gap-0 xl:gap-0 lg:grid-cols-1">
               {children}
             </div>
           </section>
