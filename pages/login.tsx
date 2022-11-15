@@ -5,10 +5,17 @@ import fetchJson, { FetchError } from 'lib/fetchJson'
 import useUser from 'lib/useUser'
 import type { NextPage } from 'next'
 import { Fragment, useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify'
+
+// minified version
+import 'react-toastify/dist/ReactToastify.min.css'
 
 const Login: NextPage = () => {
-  const [errorObj, setErrorObj] = useState({})
+  const [errorObj, setErrorObj] = useState<FetchError | any>({})
   const [role, setRole] = useState('casemanagers')
+
+  const notifyError = (description: string) => toast.error(description)
+  const notifySuccess = () => toast.success('Logging in...')
 
   // here we just check if user is already logged in and redirect to profile
   const { mutateUser } = useUser({
@@ -36,9 +43,12 @@ const Login: NextPage = () => {
           body: JSON.stringify(body)
         })
       )
+
+      notifySuccess()
     } catch (error) {
       if (error instanceof FetchError) {
         setErrorObj(error.data.message)
+        notifyError(error.data.message)
       } else {
         console.error('An unexpected error happened:', error)
       }
@@ -112,8 +122,7 @@ const Login: NextPage = () => {
                 onChange={(event) => handleRoleChange(event)}
                 value={role}
                 id="resource-pool"
-                required={true}
-                defaultValue="casemanagers">
+                required={true}>
                 <option value="none" disabled>
                   Choose your role
                 </option>
@@ -123,6 +132,7 @@ const Login: NextPage = () => {
             </div>
             <Button type="submit">Log in</Button>
           </form>
+          <ToastContainer />
         </main>
       </div>
     </Layout>

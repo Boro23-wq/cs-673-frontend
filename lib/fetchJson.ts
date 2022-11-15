@@ -1,38 +1,3 @@
-export class FetchError extends Error {
-  response: Response
-  data: {
-    statusCode: number
-    message: string
-    error: string
-  }
-
-  constructor({
-    message,
-    response,
-    data
-  }: {
-    message: string
-    response: Response
-    data: {
-      statusCode: number
-      message: string
-      error: string
-    }
-  }) {
-    // Pass remaining arguments (including vendor specific ones) to parent constructor
-    super(message)
-
-    // Maintains proper stack trace for where our error was thrown (only available on V8)
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, FetchError)
-    }
-
-    this.name = 'FetchError'
-    this.response = response
-    this.data = data ?? { message }
-  }
-}
-
 export default async function fetchJson<JSON = unknown>(
   input: RequestInfo,
   init?: RequestInit
@@ -49,9 +14,37 @@ export default async function fetchJson<JSON = unknown>(
     return data
   }
 
+  const { message } = data
+
   throw new FetchError({
-    message: response.statusText,
-    response,
-    data
+    data: message
   })
+}
+
+export class FetchError extends Error {
+  data: {
+    message: string
+    type: string
+    statusCode: number
+  }
+
+  constructor({
+    data
+  }: {
+    data: {
+      message: string
+      type: string
+      statusCode: number
+    }
+  }) {
+    // Pass remaining arguments (including vendor specific ones) to parent constructor
+    super(data.message)
+
+    // Maintains proper stack trace for where our error was thrown (only available on V8)
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, FetchError)
+    }
+
+    this.data = data ?? { data }
+  }
 }
