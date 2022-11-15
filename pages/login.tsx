@@ -1,10 +1,62 @@
 import { Layout } from '@/components/Layout'
 import { NextHead } from '@/components/NextHead'
 import { Button, Label, Select, TextInput } from 'flowbite-react'
+import fetchJson, { FetchError } from 'lib/fetchJson'
+import useUser from 'lib/useUser'
 import type { NextPage } from 'next'
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify'
+
+// minified version
+import 'react-toastify/dist/ReactToastify.min.css'
 
 const Login: NextPage = () => {
+  const [errorObj, setErrorObj] = useState<FetchError | any>({})
+  const [role, setRole] = useState('casemanagers')
+
+  const notifyError = (description: string) => toast.error(description)
+  const notifySuccess = () => toast.success('Logging in...')
+
+  // here we just check if user is already logged in and redirect to profile
+  const { mutateUser } = useUser({
+    redirectTo: '/dashboard',
+    redirectIfFound: true
+  })
+
+  const handleRoleChange = (event: any) => {
+    setRole(event.target.value)
+  }
+
+  const handleLoginSubmit = async (event: any) => {
+    event.preventDefault()
+
+    const body = {
+      email: event.target.email.value,
+      role
+    }
+
+    try {
+      mutateUser(
+        await fetchJson('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        })
+      )
+
+      notifySuccess()
+    } catch (error) {
+      if (error instanceof FetchError) {
+        setErrorObj(error.data.message)
+        notifyError(error.data.message)
+      } else {
+        console.error('An unexpected error happened:', error)
+      }
+    }
+
+    console.log(errorObj)
+  }
+
   return (
     <Layout>
       <div className="flex min-h-screen flex-col items-center">
@@ -36,7 +88,9 @@ const Login: NextPage = () => {
             </p>
           </div>
 
-          <form className="max-w-4xl px-2 mt-10 flex flex-col gap-4">
+          <form
+            onSubmit={handleLoginSubmit}
+            className="max-w-4xl px-2 mt-10 flex flex-col gap-4">
             <div>
               <div className="mb-2 block">
                 <Label htmlFor="email" value="Your email" />
@@ -47,7 +101,6 @@ const Login: NextPage = () => {
                 placeholder="name@carely.com"
                 required={true}
                 addon="@"
-                // icon={HiMail}
                 helperText={
                   <Fragment>
                     We’ll never share your details. Read our{' '}
@@ -65,14 +118,21 @@ const Login: NextPage = () => {
               <div className="mb-2 block">
                 <Label htmlFor="identity" value="Choose your role" />
               </div>
-              <Select id="resource-pool" required={true}>
-                <option>Case manager</option>
-                <option>Doctor</option>
-                <option>Medical Practitioner</option>
+              <Select
+                onChange={(event) => handleRoleChange(event)}
+                value={role}
+                id="resource-pool"
+                required={true}>
+                <option value="none" disabled>
+                  Choose your role
+                </option>
+                <option value="casemanagers">Case manager</option>
+                <option value="doctors">Doctor</option>
               </Select>
             </div>
             <Button type="submit">Log in</Button>
           </form>
+          <ToastContainer />
         </main>
       </div>
     </Layout>
