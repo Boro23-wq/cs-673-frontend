@@ -1,14 +1,14 @@
 export const navLinksUnauthorized = [
   {
     name: 'Login',
-    path: '/login'
+    path: '/login',
   },
   {
     name: 'Products',
-    path: '/products'
+    path: '/products',
   },
   {
     name: 'Contact',
-    path: '/contact'
+    path: '/contact',
   }
 ]

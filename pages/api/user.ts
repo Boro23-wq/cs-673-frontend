@@ -11,7 +11,7 @@ export interface User {
   lastName: string
   phone: string
   email: string
-  profileUrl?: string | null
+  profileUrl?: string | null | undefined
 }
 
 async function userRoute(req: NextApiRequest, res: NextApiResponse<User>) {

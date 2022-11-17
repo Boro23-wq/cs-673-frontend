@@ -26,7 +26,8 @@
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/consistent-type-assertions": "off",
-    "@typescript-eslint/restrict-template-expressions": "off"
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "@typescript-eslint/restrict-plus-operands": "off"
   },
   "globals": {
     "React": "readonly"

@@ -14,7 +14,7 @@ const Dashboard = () => {
         <>
           <p>User public data</p>
 
-          <pre>{JSON.stringify(user, null, 2)}</pre>
+          {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
         </>
       )}
     </Layout>
