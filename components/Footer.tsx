@@ -10,7 +10,6 @@ const Footer = () => {
         <FooterFlowBite.Link href="/legal/privacy-policy">
           Privacy Policy
         </FooterFlowBite.Link>
-        <FooterFlowBite.Link href="/contact">Contact</FooterFlowBite.Link>
       </FooterFlowBite.LinkGroup>
     </FooterFlowBite>
   )
