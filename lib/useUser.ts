@@ -1,5 +1,5 @@
+import { User } from 'database'
 import { useRouter } from 'next/router'
-import { User } from 'pages/api/user'
 import { useEffect } from 'react'
 import useSWR from 'swr'
 

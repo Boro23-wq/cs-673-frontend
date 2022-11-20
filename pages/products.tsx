@@ -7,7 +7,7 @@ const Products = () => {
   return (
     <Layout>
       <NextHead
-        title="Carely - Products"
+        title="Products - Carely"
         metaName="Carely"
         metaContent="Carely enables enrollee-centered, goal-oriented, culturally relevant
             and logical steps to assure that an enrollee receives supportive,
@@ -23,7 +23,7 @@ const Products = () => {
             effective, efficient, timely and cost-effective services."
       />
 
-      <div className="bg-white  pt-20 pb-12">
+      <div className="bg-white pt-0 sm:pt-20 pb-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mt-10">
             <dl className="space-y-10 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10 md:space-y-0">

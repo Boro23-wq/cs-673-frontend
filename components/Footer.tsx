@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <FooterFlowBite
       container={true}
-      className="border-t-2 border-gray-100 rounded-none">
+      className="border-t-2 mt-20 border-gray-100 rounded-none">
       <FooterFlowBite.Copyright href="/" by="Carely™" year={2022} />
       <FooterFlowBite.LinkGroup>
         <FooterFlowBite.Link href="/legal/privacy-policy">

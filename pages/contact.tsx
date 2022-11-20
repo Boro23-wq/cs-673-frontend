@@ -8,7 +8,7 @@ const Contact = () => {
     <Layout>
       <div className="flex min-h-screen flex-col items-center">
         <NextHead
-          title="Carely - Contact"
+          title="Contact - Carely"
           metaName="Carely"
           metaContent="Carely will help you attain goal-oriented, culturally relevant
           and logical steps to assure that you receive services in a supportive, effective, efficient, timely and cost-effective manner."
