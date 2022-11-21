@@ -48,7 +48,10 @@ const CasesTable = ({
                       </Badge>
                     </Table.Cell>
                     <Table.Cell>{c.categoryTitle}</Table.Cell>
-                    <Table.Cell>{c.subject}</Table.Cell>
+                    <Table.Cell>
+                      {c.subject.substring(0, 30) +
+                        (c.subject.length > 30 ? '\u2026' : '')}
+                    </Table.Cell>
                     <Table.Cell>{c.severityLevel}</Table.Cell>
                     <Table.Cell>
                       <Link href="/cases" className="font-medium text-gray-500">

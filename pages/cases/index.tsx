@@ -4,11 +4,13 @@ import { NextHead } from '@/components/NextHead'
 import { Case } from 'database'
 import { Button, Dropdown } from 'flowbite-react'
 import fetchJson from 'lib/fetchJson'
+import { useRouter } from 'next/router'
 import { Plus } from 'phosphor-react'
 import { useEffect, useState } from 'react'
 import useSWR from 'swr'
 
 const Cases = () => {
+  const router = useRouter()
   const { data } = useSWR<Case[]>(`/api/casemanagers/cases`, fetchJson)
 
   const [cases, setCases] = useState<Case[]>([])
@@ -46,7 +48,7 @@ const Cases = () => {
         {/* TODO: Implement search feature  */}
 
         <div className="flex flex-wrap gap-2 mb-4 sm:mb-0">
-          <Button>
+          <Button onClick={async () => await router.push('/cases/new')}>
             Add new case <Plus className="ml-2" size={14} />
           </Button>
         </div>

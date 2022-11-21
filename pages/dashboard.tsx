@@ -8,10 +8,13 @@ import { Button } from 'flowbite-react'
 import fetchJson from 'lib/fetchJson'
 import useUser from 'lib/useUser'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { Plus } from 'phosphor-react'
 import useSWR from 'swr'
 
 const Dashboard = () => {
+  const router = useRouter()
+
   const { user } = useUser({
     redirectTo: '/login'
   })
@@ -51,7 +54,7 @@ const Dashboard = () => {
               Welcome, {user?.firstName + ' ' + user?.lastName}.
             </h1>
             <div className="flex flex-wrap gap-2">
-              <Button>
+              <Button onClick={async () => await router.push('/cases/new')}>
                 Add new case <Plus className="ml-2" size={14} />
               </Button>
               <Button>
