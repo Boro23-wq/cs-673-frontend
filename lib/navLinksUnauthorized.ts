@@ -6,9 +6,5 @@ export const navLinksUnauthorized = [
   {
     name: 'Products',
     path: '/products'
-  },
-  {
-    name: 'Contact',
-    path: '/contact'
   }
 ]

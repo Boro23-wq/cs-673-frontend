@@ -1,18 +1,7 @@
+import { User } from 'database'
 import { withIronSessionApiRoute } from 'iron-session/next'
 import { sessionOptions } from 'lib/session'
 import { NextApiRequest, NextApiResponse } from 'next'
-
-export interface User {
-  isLoggedIn: boolean
-  id: number
-  createdAt: string
-  modifiedAt: string
-  firstName: string
-  lastName: string
-  phone: string
-  email: string
-  profileUrl?: string | null | undefined
-}
 
 async function userRoute(req: NextApiRequest, res: NextApiResponse<User>) {
   if (req.session.user) {

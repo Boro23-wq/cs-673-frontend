@@ -1,6 +1,6 @@
 // this file is a wrapper with defaults to be used in both API routes and `getServerSideProps` functions
+import { User } from 'database'
 import type { IronSessionOptions } from 'iron-session'
-import type { User } from 'pages/api/user'
 
 const dayInSeconds: number = 1440 * 60
 

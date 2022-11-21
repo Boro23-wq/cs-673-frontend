@@ -1,4 +1,4 @@
-import { Avatar, Dropdown, Navbar } from 'flowbite-react'
+import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react'
 import fetchJson from 'lib/fetchJson'
 import useUser from 'lib/useUser'
 import { useRouter } from 'next/router'
@@ -25,6 +25,14 @@ const CustomNavbar = ({
     router.push('/login')
   }
 
+  const handleContactRedirect = () => {
+    router.push('/contact')
+  }
+
+  const handleProfileRedirect = () => {
+    router.push('/account')
+  }
+
   return (
     <Navbar
       className="w-full space-between mb-10 border-b-2 border-gray-100 "
@@ -37,7 +45,7 @@ const CustomNavbar = ({
       </Navbar.Brand>
 
       <div className="flex md:order-2">
-        {user?.isLoggedIn && (
+        {user?.isLoggedIn ? (
           <Dropdown
             arrowIcon={false}
             inline={true}
@@ -55,6 +63,7 @@ const CustomNavbar = ({
                   placeholderInitials={
                     user?.firstName.charAt(0) + user?.lastName.charAt(0)
                   }
+                  status="online"
                 />
               )
             }>
@@ -66,10 +75,14 @@ const CustomNavbar = ({
                 {user?.email}
               </span>
             </Dropdown.Header>
-            <Dropdown.Item>Profile</Dropdown.Item>
+            <Dropdown.Item onClick={handleProfileRedirect}>
+              Account
+            </Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item onClick={handleLogout}>Log out</Dropdown.Item>
           </Dropdown>
+        ) : (
+          <Button onClick={() => handleContactRedirect()}>Contact us</Button>
         )}
         <div className="md:hidden items-center">
           <Navbar.Toggle className="bg-gray-100 ml-2" />
@@ -80,6 +93,7 @@ const CustomNavbar = ({
         {!user?.isLoggedIn
           ? unauthorized.map((pathObj) => (
               <Navbar.Link
+                className="rounded-md"
                 key={pathObj.name}
                 href={pathObj.path}
                 active={pathObj.path.split('/')[1] === pathFromRouter}>
@@ -88,6 +102,7 @@ const CustomNavbar = ({
             ))
           : authorized.map((pathObj) => (
               <Navbar.Link
+                className="rounded-md"
                 key={pathObj.name}
                 href={pathObj.path}
                 active={pathObj.path.split('/')[1] === pathFromRouter}>
