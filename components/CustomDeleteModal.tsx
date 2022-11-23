@@ -5,7 +5,7 @@ export const CustomDeleteModal = ({
   type,
   description,
   entity,
-  onClose,
+  onModalClose,
   active,
   onCaseClose,
   loading
@@ -13,7 +13,7 @@ export const CustomDeleteModal = ({
   type: string
   description: string
   entity: string
-  onClose: any
+  onModalClose: any
   active: any
   onCaseClose: any
   loading: boolean
@@ -21,7 +21,7 @@ export const CustomDeleteModal = ({
   return (
     <React.Fragment>
       {/* <Modal show={false} onClose={onClose}> */}
-      <Modal show={active} onClose={onClose}>
+      <Modal show={active} onClose={onModalClose}>
         <Modal.Header>Delete {entity}</Modal.Header>
         <Modal.Body>
           <div className="space-y-6">
@@ -35,7 +35,7 @@ export const CustomDeleteModal = ({
             {loading && <Spinner className="mr-2" size="sm" color="failure" />}
             Confirm
           </Button>
-          <Button color="gray" onClick={onClose}>
+          <Button color="gray" onClick={onModalClose}>
             Decline
           </Button>
         </Modal.Footer>

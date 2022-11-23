@@ -14,16 +14,19 @@ export const CaseBasicDetailTabData = ({
         <h4 className="font-bold text-lg"> Status</h4>
         <p className="mt-1 text-gray-400">{caseBasicDetail?.status}</p>
       </div>
+
       {/* Patient */}
       <div className="mb-6">
         <h4 className="font-bold text-lg">Patient</h4>
         <p className="mt-1 text-gray-400">{caseBasicDetail?.patientEmail}</p>
       </div>
+
       {/* Doctor */}
       <div className="mb-6">
         <h4 className="font-bold text-lg">Assigned to </h4>
         <p className="mt-1 text-gray-400">{caseBasicDetail?.doctorEmail}</p>
       </div>
+
       {/* Case manager */}
       <div className="mb-6">
         <h4 className="font-bold text-lg">Managed by</h4>
@@ -31,21 +34,28 @@ export const CaseBasicDetailTabData = ({
           {caseBasicDetail?.caseManagerEmail}
         </p>
       </div>
+
       {/* Category */}
       <div className="mb-6">
         <h4 className="font-bold text-lg">Top-level category</h4>
         <p className="mt-1 text-gray-400">{caseBasicDetail?.categoryTitle}</p>
       </div>
+
       {/* Subject  */}
       <div className="mb-6">
         <h4 className="font-bold text-lg">Case subject</h4>
         <p className="mt-1 text-gray-400">{caseBasicDetail?.subject}</p>
       </div>
+
       {/* Severity  */}
       <div className="mb-6">
         <h4 className="font-bold text-lg">Case severity</h4>
         <p className="mt-1 text-gray-400">{caseBasicDetail?.severityLevel}</p>
       </div>
+
+      <p className="text-gray-300 italic text-xs mt-10">
+        Last modified on - {caseBasicDetail?.modifiedAt?.split('T')[0]}
+      </p>
     </>
   )
 }
