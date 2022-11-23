@@ -54,7 +54,9 @@ const CasesTable = ({
                     </Table.Cell>
                     <Table.Cell>{c.severityLevel}</Table.Cell>
                     <Table.Cell>
-                      <Link href="/cases" className="font-medium text-gray-500">
+                      <Link
+                        href={`/cases/${c.id}`}
+                        className="font-medium text-gray-500">
                         <ArrowSquareOut size={18} />
                       </Link>
                     </Table.Cell>
@@ -93,7 +95,9 @@ const CasesTable = ({
                 <Table.Cell>{c.subject}</Table.Cell>
                 <Table.Cell>{c.severityLevel}</Table.Cell>
                 <Table.Cell>
-                  <Link href="/cases" className="font-medium text-gray-500">
+                  <Link
+                    href={`/cases/${c.id}`}
+                    className="font-medium text-gray-500">
                     <ArrowSquareOut size={18} />
                   </Link>
                 </Table.Cell>

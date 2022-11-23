@@ -2,7 +2,7 @@ import CasesTable from '@/components/CasesTable'
 import { Layout } from '@/components/Layout'
 import { NextHead } from '@/components/NextHead'
 import { Case } from 'database'
-import { Button, Dropdown } from 'flowbite-react'
+import { Button, Dropdown, Spinner } from 'flowbite-react'
 import fetchJson from 'lib/fetchJson'
 import { useRouter } from 'next/router'
 import { Plus } from 'phosphor-react'
@@ -87,10 +87,16 @@ const Cases = () => {
         List of all the active and inactive cases.
       </p>
 
-      <CasesTable
-        cases={casesBySeverity.length > 0 ? casesBySeverity : cases}
-        isDashboard={false}
-      />
+      {cases ? (
+        <CasesTable
+          cases={casesBySeverity.length > 0 ? casesBySeverity : cases}
+          isDashboard={false}
+        />
+      ) : (
+        <div className="flex justify-center">
+          <Spinner />
+        </div>
+      )}
     </Layout>
   )
 }

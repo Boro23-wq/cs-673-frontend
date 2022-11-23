@@ -21,4 +21,36 @@ export interface Case {
   severityLevel: string
   status: string
   subject: string
+  caseNotes?: Note[]
+  solutions?: Solution[]
+  milestones?: Milestone[]
+}
+
+export interface Note {
+  id: number
+  createdAt: string
+  modifiedAt: string
+  comment: string
+  caseId: number
+  case: Case
+}
+
+interface Solution {
+  id: number
+  createdAt: string
+  modifiedAt: string
+  subject: string
+  investigation: string
+  resolution: string
+  case: Case
+  caseId: number
+}
+
+interface Milestone {
+  id: number
+  createdAt: string
+  modifiedAt: string
+  description: string
+  case: Case
+  caseId: number
 }

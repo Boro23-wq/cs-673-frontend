@@ -4,7 +4,7 @@ import DashboardCard from '@/components/DashboardCard'
 import { Layout } from '@/components/Layout'
 import { NextHead } from '@/components/NextHead'
 import { Case } from 'database'
-import { Button } from 'flowbite-react'
+import { Button, Spinner } from 'flowbite-react'
 import fetchJson from 'lib/fetchJson'
 import useUser from 'lib/useUser'
 import Link from 'next/link'
@@ -46,7 +46,7 @@ const Dashboard = () => {
         metaName="Carely"
         metaContent="Display metrics and details regarding appointments, and cases."
       />
-      {user && (
+      {user ? (
         <>
           {/* Heading section */}
           <div className="flex flex-col md:flex-row justify-between">
@@ -132,6 +132,10 @@ const Dashboard = () => {
             isDashboard={true}
           />
         </>
+      ) : (
+        <div className="flex justify-center">
+          <Spinner />
+        </div>
       )}
     </Layout>
   )
