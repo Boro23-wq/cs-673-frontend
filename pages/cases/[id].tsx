@@ -6,7 +6,6 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import useSWR from 'swr'
 
-// minified version
 import {
   CaseBasicDetailTabData,
   CaseNotesTabData,
@@ -17,6 +16,7 @@ import { UpdateCaseModal } from '@/components/UpdateCaseModal'
 import { Button, Spinner, Tabs } from 'flowbite-react'
 import fetchJson from 'lib/fetchJson'
 import { toast, ToastContainer } from 'react-toastify'
+// minified version
 import 'react-toastify/dist/ReactToastify.min.css'
 
 const CaseDetailPage = () => {
