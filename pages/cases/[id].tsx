@@ -128,7 +128,9 @@ const CaseDetailPage = () => {
           </Tabs.Group>
         </>
       ) : (
-        <Spinner />
+        <div className="flex justify-center">
+          <Spinner />
+        </div>
       )}
 
       <CustomDeleteModal
