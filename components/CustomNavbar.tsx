@@ -19,10 +19,8 @@ const CustomNavbar = ({
   const { user, mutateUser } = useUser()
   const router = useRouter()
   const pathFromRouter = router.asPath.split('/')[1]
-  console.log(router.pathname)
 
   const handleLogout = async () => {
-    // e.preventDefault()
     mutateUser(await fetchJson('/api/logout', { method: 'POST' }), false)
     router.push('/login')
   }
