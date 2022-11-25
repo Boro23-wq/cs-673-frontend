@@ -1,7 +1,7 @@
 import { HeroFeaturesSection } from '@/components/HeroFeaturesSection'
 import { Layout } from '@/components/Layout'
 import { NextHead } from '@/components/NextHead'
-import { Button, Label, Select, TextInput } from 'flowbite-react'
+import { Button, Label, Select, Spinner, TextInput } from 'flowbite-react'
 import fetchJson, { FetchError } from 'lib/fetchJson'
 import useUser from 'lib/useUser'
 import type { NextPage } from 'next'
@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.min.css'
 const Login: NextPage = () => {
   const [errorObj, setErrorObj] = useState<FetchError | any>({})
   const [role, setRole] = useState('casemanagers')
+  const [loading, setLoading] = useState(false)
 
   const notifyError = (description: string) => toast.error(description)
   const notifySuccess = () => toast.success('Logging in...')
@@ -32,6 +33,7 @@ const Login: NextPage = () => {
 
   const handleLoginSubmit = async (event: any) => {
     event.preventDefault()
+    setLoading(true)
 
     const body = {
       email: event.target.email.value,
@@ -47,6 +49,7 @@ const Login: NextPage = () => {
         })
       )
 
+      setLoading(false)
       notifySuccess()
     } catch (error) {
       if (error instanceof FetchError) {
@@ -151,7 +154,10 @@ const Login: NextPage = () => {
                   <option value="doctors">Doctor</option>
                 </Select>
               </div>
-              <Button type="submit">Log in</Button>
+              <Button disabled={loading} type="submit">
+                {loading && <Spinner className="mr-2" size="sm" />}
+                Log in
+              </Button>
             </form>
           </div>
           <ToastContainer />
