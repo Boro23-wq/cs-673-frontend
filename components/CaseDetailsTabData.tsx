@@ -1,5 +1,6 @@
 import { Case, Milestone, Note, Solution } from 'database'
 import { Timeline } from 'flowbite-react'
+import moment from 'moment'
 import { NotesIcon } from './Icons'
 
 export const CaseBasicDetailTabData = ({
@@ -54,7 +55,7 @@ export const CaseBasicDetailTabData = ({
       </div>
 
       <p className="text-gray-300 italic text-xs mt-10">
-        Last modified on - {caseBasicDetail?.modifiedAt?.split('T')[0]}
+        Last modified on - {moment(caseBasicDetail?.modifiedAt).format('ll')}
       </p>
     </>
   )
@@ -73,7 +74,9 @@ export const CaseNotesTabData = ({
             <Timeline.Item>
               <Timeline.Point className="bg-red-800" icon={NotesIcon} />
               <Timeline.Content>
-                <Timeline.Time>{note?.createdAt?.split('T')[0]}</Timeline.Time>
+                <Timeline.Time>
+                  {moment(note?.createdAt).format('ll')}{' '}
+                </Timeline.Time>
                 <Timeline.Title>Case Note - {note.id}</Timeline.Title>
                 <Timeline.Body>{note?.comment}</Timeline.Body>
               </Timeline.Content>
@@ -103,7 +106,7 @@ export const MilestonesTabData = ({
               <Timeline.Point />
               <Timeline.Content>
                 <Timeline.Time>
-                  {milestone?.createdAt?.split('T')[0]}
+                  {moment(milestone?.createdAt).format('ll')}
                 </Timeline.Time>
                 <Timeline.Title>Milestone - {milestone?.id}</Timeline.Title>
                 <Timeline.Body>{milestone?.description}</Timeline.Body>

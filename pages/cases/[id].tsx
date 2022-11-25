@@ -17,6 +17,7 @@ import { Button, Spinner, Tabs } from 'flowbite-react'
 import fetchJson from 'lib/fetchJson'
 import { toast, ToastContainer } from 'react-toastify'
 // minified version
+import moment from 'moment'
 import 'react-toastify/dist/ReactToastify.min.css'
 
 const CaseDetailPage = () => {
@@ -89,7 +90,7 @@ const CaseDetailPage = () => {
           </h1>
           <p className="text-gray-400 italic">
             Case created on{' '}
-            {caseBasicData && caseBasicData?.createdAt?.split('T')[0]}
+            {caseBasicData && moment(caseBasicData?.createdAt).format('ll')}
           </p>
         </div>
         <div className="flex mt-4">
