@@ -2,7 +2,7 @@ import CasesTable from '@/components/CasesTable'
 import { Layout } from '@/components/Layout'
 import { NextHead } from '@/components/NextHead'
 import { Case } from 'database'
-import { Button, Dropdown, Spinner } from 'flowbite-react'
+import { Button, Dropdown } from 'flowbite-react'
 import fetchJson from 'lib/fetchJson'
 import { useRouter } from 'next/router'
 import { Plus } from 'phosphor-react'
@@ -15,6 +15,7 @@ const Cases = () => {
 
   const [cases, setCases] = useState<Case[]>([])
   const [casesBySeverity, setCasesBySeverity] = useState<Case[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
 
   const filterItemsBySeverity = (severity: string) => {
     if (severity !== 'Clear') {
@@ -31,6 +32,7 @@ const Cases = () => {
   useEffect(() => {
     if (data) {
       setCases(data)
+      setLoading(false)
     }
   }, [data])
 
@@ -87,16 +89,11 @@ const Cases = () => {
         List of all the active and inactive cases.
       </p>
 
-      {cases ? (
-        <CasesTable
-          cases={casesBySeverity.length > 0 ? casesBySeverity : cases}
-          isDashboard={false}
-        />
-      ) : (
-        <div className="flex justify-center">
-          <Spinner />
-        </div>
-      )}
+      <CasesTable
+        cases={casesBySeverity.length > 0 ? casesBySeverity : cases}
+        isDashboard={false}
+        loading={loading}
+      />
     </Layout>
   )
 }

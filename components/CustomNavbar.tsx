@@ -1,6 +1,7 @@
 import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react'
 import fetchJson from 'lib/fetchJson'
 import useUser from 'lib/useUser'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 interface HeaderLinksType {
@@ -20,7 +21,6 @@ const CustomNavbar = ({
   const pathFromRouter = router.asPath.split('/')[1]
 
   const handleLogout = async () => {
-    // e.preventDefault()
     mutateUser(await fetchJson('/api/logout', { method: 'POST' }), false)
     router.push('/login')
   }
@@ -92,22 +92,36 @@ const CustomNavbar = ({
       <Navbar.Collapse className="mb-4 sm:mb-0">
         {!user?.isLoggedIn
           ? unauthorized.map((pathObj) => (
-              <Navbar.Link
-                className="rounded-md"
+              <Link
+                legacyBehavior
+                passHref
                 key={pathObj.name}
-                href={pathObj.path}
-                active={pathObj.path.split('/')[1] === pathFromRouter}>
-                {pathObj.name}
-              </Navbar.Link>
+                href={pathObj.path}>
+                <a
+                  className={
+                    pathObj.path.split('/')[1] === pathObj.path
+                      ? 'text-blue-600'
+                      : ''
+                  }>
+                  {pathObj.name}
+                </a>
+              </Link>
             ))
           : authorized.map((pathObj) => (
-              <Navbar.Link
-                className="rounded-md"
+              <Link
+                legacyBehavior
+                passHref
                 key={pathObj.name}
-                href={pathObj.path}
-                active={pathObj.path.split('/')[1] === pathFromRouter}>
-                {pathObj.name}
-              </Navbar.Link>
+                href={pathObj.path}>
+                <a
+                  className={
+                    pathObj.path.split('/')[1] === pathFromRouter
+                      ? 'text-blue-600'
+                      : ''
+                  }>
+                  {pathObj.name}
+                </a>
+              </Link>
             ))}
       </Navbar.Collapse>
     </Navbar>
