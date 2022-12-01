@@ -99,7 +99,7 @@ const CustomNavbar = ({
                 href={pathObj.path}>
                 <a
                   className={
-                    pathObj.path.split('/')[1] === pathObj.path
+                    pathObj.path.split('/')[1] === pathFromRouter
                       ? 'text-blue-600'
                       : ''
                   }>

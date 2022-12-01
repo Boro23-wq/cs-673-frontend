@@ -49,7 +49,6 @@ const Login: NextPage = () => {
         })
       )
 
-      setLoading(false)
       notifySuccess()
     } catch (error) {
       if (error instanceof FetchError) {
@@ -60,6 +59,7 @@ const Login: NextPage = () => {
       }
     }
 
+    setLoading(false)
     console.log(errorObj)
   }
 

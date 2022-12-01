@@ -3,6 +3,7 @@ import { NextHead } from '@/components/NextHead'
 import { User } from 'database'
 import { Avatar, Button, Card, Spinner } from 'flowbite-react'
 import fetchJson from 'lib/fetchJson'
+import moment from 'moment'
 import { Upload, UploadSimple } from 'phosphor-react'
 import { useState } from 'react'
 import useSWR from 'swr'
@@ -30,7 +31,6 @@ const Account = () => {
     const requestOptions: RequestInit = {
       method: 'POST',
       body: formData
-      // body: formData
     }
 
     await fetch(`/api/casemanagers/image`, requestOptions)
@@ -91,7 +91,7 @@ const Account = () => {
                       </p>
                     </div>
                     <div className="inline-flex items-center text-xs font-light text-gray-400 italic">
-                      {user?.createdAt.split('T')[0]}
+                      {moment(user?.createdAt).format('ll')}
                     </div>
                   </div>
                 ) : (

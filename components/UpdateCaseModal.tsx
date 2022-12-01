@@ -145,7 +145,7 @@ export const UpdateCaseModal = ({
         </Modal.Body>
         <Modal.Footer>
           {/* <Button onClick={onClick}>I accept</Button> */}
-          <Button onClick={handleSubmit} type="submit">
+          <Button disabled={loading} onClick={handleSubmit} type="submit">
             {loading && <Spinner className="mr-2" size="sm" />}
             Update
           </Button>
