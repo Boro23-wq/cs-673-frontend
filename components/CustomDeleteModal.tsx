@@ -31,7 +31,7 @@ export const CustomDeleteModal = ({
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button color={type} onClick={onCaseClose}>
+          <Button disabled={loading} color={type} onClick={onCaseClose}>
             {loading && <Spinner className="mr-2" size="sm" color="failure" />}
             Confirm
           </Button>

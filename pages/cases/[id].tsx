@@ -99,7 +99,9 @@ const CaseDetailPage = () => {
           </Button>
 
           <Button
-            disabled={caseBasicData && caseBasicData?.status === 'Inactive'}
+            disabled={
+              loading || (caseBasicData && caseBasicData?.status === 'Inactive')
+            }
             onClick={() => setCloseCaseModal(true)}
             color="failure"
             className="disabled:hover:bg-red-700">

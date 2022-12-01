@@ -210,7 +210,10 @@ const AddCase = () => {
             </div>
           </div>
 
-          <Button className="w-full md:w-fit lg:w-fit" type="submit">
+          <Button
+            disabled={loading}
+            className="w-full md:w-fit lg:w-fit"
+            type="submit">
             {loading ? (
               <Spinner
                 className="mr-2"
