@@ -16,12 +16,15 @@ import { UpdateCaseModal } from '@/components/UpdateCaseModal'
 import { Button, Spinner, Tabs } from 'flowbite-react'
 import fetchJson from 'lib/fetchJson'
 import { toast, ToastContainer } from 'react-toastify'
+
 // minified version
+import { CreateNoteModal } from '@/components/CreateNoteModal'
 import moment from 'moment'
 import 'react-toastify/dist/ReactToastify.min.css'
 
 const CaseDetailPage = () => {
   const [closeCaseModal, setCloseCaseModal] = useState<boolean>(false)
+  const [addNoteModal, setAddNoteModal] = useState<boolean>(false)
   const [updateCaseModal, setUpdateCaseModal] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -37,15 +40,18 @@ const CaseDetailPage = () => {
 
   const { data: caseNotesData } = useSWR<Note | any>(
     `/api/cases/${caseId}/casenotes`,
-    fetchJson
+    fetchJson,
+    { refreshInterval: 1000 }
   )
   const { data: caseMilestonesData } = useSWR<Milestone | any>(
     `/api/cases/${caseId}/milestones`,
-    fetchJson
+    fetchJson,
+    { refreshInterval: 1000 }
   )
   const { data: caseSolutionsData } = useSWR<Solution | any>(
     `/api/cases/${caseId}/solutions`,
-    fetchJson
+    fetchJson,
+    { refreshInterval: 1000 }
   )
 
   const handleClosingCase = async () => {
@@ -96,6 +102,13 @@ const CaseDetailPage = () => {
         <div className="flex mt-4">
           <Button onClick={() => setUpdateCaseModal(true)} className="mr-2">
             Update case
+          </Button>
+
+          <Button
+            color="gray"
+            onClick={() => setAddNoteModal(true)}
+            className="mr-2">
+            Add note
           </Button>
 
           <Button
@@ -152,6 +165,11 @@ const CaseDetailPage = () => {
         caseBasicData={caseBasicData}
         active={updateCaseModal}
         onModalClose={() => setUpdateCaseModal(false)}
+      />
+
+      <CreateNoteModal
+        active={addNoteModal}
+        onModalClose={() => setAddNoteModal(false)}
       />
 
       <ToastContainer />
