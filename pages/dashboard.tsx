@@ -123,7 +123,7 @@ const Dashboard = () => {
               </Link>
             </div>
             <p className="mb-5 text-gray-500">
-              List of critical cases sorted by date.
+              List of critical active cases sorted by date.
             </p>
           </div>
           <CasesTable

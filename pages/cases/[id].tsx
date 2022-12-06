@@ -9,8 +9,7 @@ import useSWR from 'swr'
 import {
   CaseBasicDetailTabData,
   CaseNotesTabData,
-  MilestonesTabData,
-  SolutionsTabData
+  MilestonesTabData
 } from '@/components/CaseDetailsTabData'
 import { UpdateCaseModal } from '@/components/UpdateCaseModal'
 import { Button, Spinner, Tabs } from 'flowbite-react'
@@ -18,6 +17,7 @@ import fetchJson from 'lib/fetchJson'
 import { toast, ToastContainer } from 'react-toastify'
 
 // minified version
+import { CreateMilestoneModal } from '@/components/CreateMilestoneModal'
 import { CreateNoteModal } from '@/components/CreateNoteModal'
 import moment from 'moment'
 import 'react-toastify/dist/ReactToastify.min.css'
@@ -25,6 +25,7 @@ import 'react-toastify/dist/ReactToastify.min.css'
 const CaseDetailPage = () => {
   const [closeCaseModal, setCloseCaseModal] = useState<boolean>(false)
   const [addNoteModal, setAddNoteModal] = useState<boolean>(false)
+  const [addMilestoneModal, setAddMilestoneModal] = useState<boolean>(false)
   const [updateCaseModal, setUpdateCaseModal] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -92,34 +93,46 @@ const CaseDetailPage = () => {
       <div className="mb-4 flex justify-between flex-col">
         <div className="flex flex-col">
           <h1 className="max-w-2xl mb-2 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-5xl dark:text-white">
-            Case - #{caseBasicData && caseBasicData?.id}
+            Case Detail - #{caseBasicData && caseBasicData?.id}
           </h1>
-          <p className="text-gray-400 italic">
-            Case created on{' '}
+          <p className="text-gray-400 text-sm italic">
+            Submitted on{' '}
             {caseBasicData && moment(caseBasicData?.createdAt).format('ll')}
           </p>
         </div>
-        <div className="flex mt-4">
-          <Button onClick={() => setUpdateCaseModal(true)} className="mr-2">
-            Update case
-          </Button>
+        <div className="flex mt-4 justify-between">
+          <div className="flex">
+            <Button onClick={() => setUpdateCaseModal(true)} className="mr-2">
+              Update case
+            </Button>
 
-          <Button
-            color="gray"
-            onClick={() => setAddNoteModal(true)}
-            className="mr-2">
-            Add note
-          </Button>
+            <Button
+              color="gray"
+              onClick={() => setAddNoteModal(true)}
+              className="mr-2">
+              Add note
+            </Button>
 
-          <Button
-            disabled={
-              loading || (caseBasicData && caseBasicData?.status === 'Inactive')
-            }
-            onClick={() => setCloseCaseModal(true)}
-            color="failure"
-            className="disabled:hover:bg-red-700">
-            Close case
-          </Button>
+            <Button
+              color="gray"
+              onClick={() => setAddMilestoneModal(true)}
+              className="mr-2">
+              Add milestone
+            </Button>
+          </div>
+
+          <div className="flex sm:mt-2">
+            <Button
+              disabled={
+                loading ||
+                (caseBasicData && caseBasicData?.status === 'Inactive')
+              }
+              onClick={() => setCloseCaseModal(true)}
+              color="failure"
+              className="disabled:hover:bg-red-700">
+              Close case
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -138,9 +151,9 @@ const CaseDetailPage = () => {
             <Tabs.Item title="Milestones">
               <MilestonesTabData milestones={caseMilestonesData} />
             </Tabs.Item>
-            <Tabs.Item title="Solutions">
+            {/* <Tabs.Item title="Solutions">
               <SolutionsTabData solutions={caseSolutionsData} />
-            </Tabs.Item>
+            </Tabs.Item> */}
           </Tabs.Group>
         </>
       ) : (
@@ -170,6 +183,11 @@ const CaseDetailPage = () => {
       <CreateNoteModal
         active={addNoteModal}
         onModalClose={() => setAddNoteModal(false)}
+      />
+
+      <CreateMilestoneModal
+        active={addMilestoneModal}
+        onModalClose={() => setAddMilestoneModal(false)}
       />
 
       <ToastContainer />

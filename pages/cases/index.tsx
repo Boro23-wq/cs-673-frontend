@@ -101,7 +101,7 @@ const Cases = () => {
       <CustomSearch handleSearch={handleSearch} searchFor="cases by subject" />
 
       <p className="mb-5 text-gray-500">
-        List of all the active and inactive cases.
+        List of all the active and inactive cases sorted by date.
       </p>
 
       {searchInput ? (
