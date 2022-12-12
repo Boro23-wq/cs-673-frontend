@@ -52,7 +52,6 @@ const AddCase = () => {
     }
 
     const response = await fetch(`/api/cases/`, requestOptions)
-    console.log(response)
 
     if (response.ok) {
       notifySuccess()
