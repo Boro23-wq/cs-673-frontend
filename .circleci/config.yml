@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:gallium-alpine
+      - image: circleci/node:gallium-alpine3.16
     steps:
       - checkout
       - run:
