@@ -62,27 +62,16 @@ const Account = () => {
                 {user ? (
                   <div className="flex items-center space-x-4">
                     <div className="shrink-0">
-                      {user?.profileUrl ? (
-                        <div className="flex flex-wrap gap-2">
-                          <Avatar
-                            img={user?.profileUrl}
-                            rounded={true}
-                            bordered={true}
-                            alt="User avatar"
-                          />
-                        </div>
-                      ) : (
-                        <div className="flex flex-wrap gap-2">
-                          <Avatar
-                            placeholderInitials={
-                              user &&
-                              user?.firstName?.charAt(0) +
-                                user?.lastName.charAt(0)
-                            }
-                            alt="User avatar"
-                          />
-                        </div>
-                      )}
+                      <div className="flex flex-wrap gap-2">
+                        <Avatar
+                          placeholderInitials={
+                            user &&
+                            user?.firstName?.charAt(0) +
+                              user?.lastName.charAt(0)
+                          }
+                          alt="User avatar"
+                        />
+                      </div>
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-sm font-medium text-gray-900">
