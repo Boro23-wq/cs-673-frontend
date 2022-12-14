@@ -1,6 +1,9 @@
-import { Case, Milestone, Note, Solution } from 'database'
-import { Timeline } from 'flowbite-react'
+import { Case, Milestone, Note, Solution, User } from 'database'
+import { Accordion, Timeline } from 'flowbite-react'
+import fetchJson from 'lib/fetchJson'
 import moment from 'moment'
+import { useEffect, useState } from 'react'
+import useSWR from 'swr'
 import { NotesIcon } from './Icons'
 
 export const CaseBasicDetailTabData = ({
@@ -8,6 +11,39 @@ export const CaseBasicDetailTabData = ({
 }: {
   caseBasicDetail: Case | undefined
 }) => {
+  const [patientData, setPatientData] = useState<User>()
+  const [doctorData, setDoctorData] = useState<User>()
+  const [caseManagerData, setCaseManagerData] = useState<User>()
+
+  const { data: patient } = useSWR<User>(
+    `/api/patients?email=${caseBasicDetail?.patientEmail}`,
+    fetchJson
+  )
+
+  const { data: doctor } = useSWR<User>(
+    `/api/doctors?email=${caseBasicDetail?.doctorEmail}`,
+    fetchJson
+  )
+
+  const { data: casemanager } = useSWR<User>(
+    `/api/casemanagers?email=${caseBasicDetail?.caseManagerEmail}`,
+    fetchJson
+  )
+
+  useEffect(() => {
+    if (patient) {
+      setPatientData(patient)
+    }
+
+    if (doctor) {
+      setDoctorData(doctor)
+    }
+
+    if (casemanager) {
+      setCaseManagerData(casemanager)
+    }
+  }, [patient, doctor, casemanager])
+
   return (
     <>
       {/* Detail */}
@@ -27,24 +63,71 @@ export const CaseBasicDetailTabData = ({
           <p className="mt-1 text-gray-400">{caseBasicDetail?.status}</p>
         </div>
 
-        {/* Patient */}
+        {/* Accordion */}
         <div className="mb-6">
-          <h4 className="font-bold text-lg">Patient</h4>
-          <p className="mt-1 text-gray-400">{caseBasicDetail?.patientEmail}</p>
+          <h4 className="font-bold text-lg mb-2">Patient</h4>
+          <Accordion alwaysOpen={true}>
+            <Accordion.Panel>
+              <Accordion.Title>
+                {patient?.firstName + ' ' + patient?.lastName}
+              </Accordion.Title>
+              <Accordion.Content>
+                <p className="mb-2 text-gray-500 dark:text-gray-400">
+                  <span className="font-bold">Email:</span>{' '}
+                  {caseBasicDetail?.patientEmail}
+                </p>
+                <p className="mb-2 text-gray-500 dark:text-gray-400">
+                  <span className="font-bold">Contact:</span>{' '}
+                  {patientData?.phone}
+                </p>
+              </Accordion.Content>
+            </Accordion.Panel>
+          </Accordion>
         </div>
 
-        {/* Doctor */}
+        {/* Accordion */}
         <div className="mb-6">
-          <h4 className="font-bold text-lg">Assigned to </h4>
-          <p className="mt-1 text-gray-400">{caseBasicDetail?.doctorEmail}</p>
+          <h4 className="font-bold text-lg mb-2">Doctor</h4>
+          <Accordion alwaysOpen={true}>
+            <Accordion.Panel>
+              <Accordion.Title>
+                {doctor?.firstName + ' ' + doctor?.lastName}
+              </Accordion.Title>
+              <Accordion.Content>
+                <p className="mb-2 text-gray-500 dark:text-gray-400">
+                  <span className="font-bold">Email:</span>{' '}
+                  {caseBasicDetail?.doctorEmail}
+                </p>
+                <p className="mb-2 text-gray-500 dark:text-gray-400">
+                  <span className="font-bold">Contact:</span>{' '}
+                  {doctorData?.phone}
+                </p>
+              </Accordion.Content>
+            </Accordion.Panel>
+          </Accordion>
         </div>
 
         {/* Case manager */}
+        {/* Accordion */}
         <div className="mb-6">
-          <h4 className="font-bold text-lg">Managed by</h4>
-          <p className="mt-1 text-gray-400">
-            {caseBasicDetail?.caseManagerEmail}
-          </p>
+          <h4 className="font-bold text-lg mb-2">Case Manager</h4>
+          <Accordion alwaysOpen={true}>
+            <Accordion.Panel>
+              <Accordion.Title>
+                {casemanager?.firstName + ' ' + casemanager?.lastName}
+              </Accordion.Title>
+              <Accordion.Content>
+                <p className="mb-2 text-gray-500 dark:text-gray-400">
+                  <span className="font-bold">Email:</span>{' '}
+                  {caseBasicDetail?.caseManagerEmail}
+                </p>
+                <p className="mb-2 text-gray-500 dark:text-gray-400">
+                  <span className="font-bold">Contact:</span>{' '}
+                  {caseManagerData?.phone}
+                </p>
+              </Accordion.Content>
+            </Accordion.Panel>
+          </Accordion>
         </div>
 
         {/* Category */}
