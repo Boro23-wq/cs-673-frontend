@@ -153,6 +153,31 @@ const AddCase = () => {
                 <option value="Cancer and neoplasms">
                   Cancer and neoplasms
                 </option>
+                <option value="Cardiovascular">Cardiovascular</option>
+                <option value="Congenital disorders">
+                  Congenital disorders
+                </option>
+                <option value="Inflammatory and immune system">
+                  Inflammatory and immune system
+                </option>
+                <option value="Injuries and accidents">
+                  Injuries and accidents
+                </option>
+                <option value="Mental health">Mental health</option>
+                <option value="Metabolic and endocrine">
+                  Metabolic and endocrine
+                </option>
+                <option value="Musculoskeletal">Musculoskeletal</option>
+                <option value="Neurological">Neurological</option>
+                <option value="Oral and gastrointestinal">
+                  Oral and gastrointestinal
+                </option>
+                <option value="Renal and urogenital">
+                  Renal and urogenital
+                </option>
+                <option value="Reproductive health and childbirth">
+                  Reproductive health and childbirth
+                </option>
               </Select>
             </div>
             {/* Subject */}
