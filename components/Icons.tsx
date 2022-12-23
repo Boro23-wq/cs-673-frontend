@@ -2,9 +2,9 @@ export const NotesIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="18"
-      fill="rgba(0,0,0,0.25)"
+      width="14"
+      height="14"
+      fill="#1C64F2"
       viewBox="0 0 256 256">
       <rect width="256" height="256" fill="none"></rect>
       <path d="M200,32H184V24a8,8,0,0,0-16,0v8H136V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H56A16,16,0,0,0,40,48V200a32,32,0,0,0,32,32H184a32,32,0,0,0,32-32V48A16,16,0,0,0,200,32ZM160,168H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Zm0-32H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Z"></path>

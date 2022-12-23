@@ -1,6 +1,5 @@
 import { Case } from 'database'
 import { Badge, Spinner, Table } from 'flowbite-react'
-import moment from 'moment'
 import Link from 'next/link'
 import { ArrowSquareOut } from 'phosphor-react'
 
@@ -49,9 +48,7 @@ const CasesTable = ({
                       <Table.Cell className="whitespace-nowrap font-medium text-gray-900">
                         {c.id}
                       </Table.Cell>
-                      <Table.Cell>
-                        {moment(c.createdAt).format('ll')}
-                      </Table.Cell>
+                      <Table.Cell>{c.createdAt.split('T')[0]}</Table.Cell>
                       <Table.Cell>
                         <Badge className="w-max" color="success">
                           {c.status}
@@ -89,7 +86,7 @@ const CasesTable = ({
                   <Table.Cell className="whitespace-nowrap font-medium text-gray-900">
                     {c.id}
                   </Table.Cell>
-                  <Table.Cell>{moment(c.createdAt).format('ll')}</Table.Cell>
+                  <Table.Cell>{c.createdAt.split('T')[0]}</Table.Cell>
                   <Table.Cell>
                     {c.status === 'Active' ? (
                       <Badge className="w-max" color="success">

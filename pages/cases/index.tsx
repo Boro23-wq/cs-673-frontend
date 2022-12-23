@@ -1,5 +1,4 @@
 import CasesTable from '@/components/CasesTable'
-import { CustomSearch } from '@/components/CustomSearch'
 import { Layout } from '@/components/Layout'
 import { NextHead } from '@/components/NextHead'
 import { Case } from 'database'
@@ -15,10 +14,8 @@ const Cases = () => {
   const { data } = useSWR<Case[]>(`/api/casemanagers/cases`, fetchJson)
 
   const [cases, setCases] = useState<Case[]>([])
-  const [filteredCases, setFilteredCases] = useState<Case[]>([])
   const [casesBySeverity, setCasesBySeverity] = useState<Case[]>([])
   const [loading, setLoading] = useState<boolean>(true)
-  const [searchInput, setSearchInput] = useState<string>('')
 
   const filterItemsBySeverity = (severity: string) => {
     if (severity !== 'Clear') {
@@ -30,16 +27,6 @@ const Cases = () => {
       return
     }
     setCasesBySeverity([])
-  }
-
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(e.target.value)
-
-    const filteredItems = cases.filter((caseItem) =>
-      caseItem.subject.toLowerCase().includes(e.target.value.toLowerCase())
-    )
-
-    setFilteredCases(filteredItems)
   }
 
   useEffect(() => {
@@ -98,25 +85,15 @@ const Cases = () => {
         </div>
       </div>
 
-      <CustomSearch handleSearch={handleSearch} searchFor="cases by subject" />
-
       <p className="mb-5 text-gray-500">
-        List of all the active and inactive cases sorted by date.
+        List of all the active and inactive cases.
       </p>
 
-      {searchInput ? (
-        <CasesTable
-          cases={filteredCases}
-          isDashboard={false}
-          loading={loading}
-        />
-      ) : (
-        <CasesTable
-          cases={casesBySeverity.length > 0 ? casesBySeverity : cases}
-          isDashboard={false}
-          loading={loading}
-        />
-      )}
+      <CasesTable
+        cases={casesBySeverity.length > 0 ? casesBySeverity : cases}
+        isDashboard={false}
+        loading={loading}
+      />
     </Layout>
   )
 }

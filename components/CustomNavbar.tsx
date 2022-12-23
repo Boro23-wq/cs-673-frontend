@@ -50,13 +50,22 @@ const CustomNavbar = ({
             arrowIcon={false}
             inline={true}
             label={
-              <Avatar
-                rounded={true}
-                placeholderInitials={
-                  user?.firstName.charAt(0) + user?.lastName.charAt(0)
-                }
-                status="online"
-              />
+              user?.profileUrl ? (
+                <Avatar
+                  alt="User avatar"
+                  img={user?.profileUrl}
+                  rounded={true}
+                  status="online"
+                />
+              ) : (
+                <Avatar
+                  rounded={true}
+                  placeholderInitials={
+                    user?.firstName.charAt(0) + user?.lastName.charAt(0)
+                  }
+                  status="online"
+                />
+              )
             }>
             <Dropdown.Header>
               <span className="block text-sm">
@@ -90,7 +99,7 @@ const CustomNavbar = ({
                 href={pathObj.path}>
                 <a
                   className={
-                    pathObj.path.split('/')[1] === pathFromRouter
+                    pathObj.path.split('/')[1] === pathObj.path
                       ? 'text-blue-600'
                       : ''
                   }>
